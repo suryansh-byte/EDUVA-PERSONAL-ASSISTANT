@@ -1,5 +1,7 @@
 {
   "name": "EDUVA – Intelligent Study Companion",
   "description": "A clean, distraction-free AI-powered study assistant designed to help students clear doubts, understand complex concepts, and debug code step-by-step.",
-  "requestFramePermissions": []
+  "requestFramePermissions": [
+    "camera"
+  ]
 }

@@ -6,16 +6,120 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>EDUVA – Intelligent Study Companion</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            theme: {
+              bg: 'var(--bg)',
+              text: 'var(--text)',
+              card: 'var(--card)',
+              border: 'var(--border)',
+              accent: 'var(--accent)',
+              muted: 'var(--muted)',
+            }
+          }
+        }
+      }
+    }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --bg: #ffffff;
+      --text: #000000;
+      --card: rgba(255, 255, 255, 0.7);
+      --border: rgba(0, 0, 0, 0.1);
+      --accent: #000000;
+      --muted: #6b7280;
+    }
+
+    [data-theme="midnight"] {
+      --bg: #09090b;
+      --text: #fafafa;
+      --card: rgba(24, 24, 27, 0.7);
+      --border: rgba(255, 255, 255, 0.1);
+      --accent: #ffffff;
+      --muted: #a1a1aa;
+    }
+
+    [data-theme="sepia"] {
+      --bg: #fdf6e3;
+      --text: #433422;
+      --card: rgba(238, 232, 213, 0.7);
+      --border: rgba(112, 66, 20, 0.15);
+      --accent: #704214;
+      --muted: #857f6f;
+    }
+
+    [data-theme="ocean"] {
+      --bg: #0f172a;
+      --text: #f1f5f9;
+      --card: rgba(30, 41, 59, 0.7);
+      --border: rgba(255, 255, 255, 0.1);
+      --accent: #38bdf8;
+      --muted: #94a3b8;
+    }
+
+    [data-theme="forest"] {
+      --bg: #061e14;
+      --text: #ecfdf5;
+      --card: rgba(6, 78, 59, 0.7);
+      --border: rgba(255, 255, 255, 0.1);
+      --accent: #10b981;
+      --muted: #34d399;
+    }
+
     body {
       font-family: 'Inter', sans-serif;
-      background-color: white;
-      color: black;
+      background-color: var(--bg);
+      background-image: radial-gradient(circle at top right, rgba(0,0,0,0.02), transparent),
+                        radial-gradient(circle at bottom left, rgba(0,0,0,0.02), transparent);
+      color: var(--text);
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    [data-theme="midnight"] body {
+      background-image: radial-gradient(circle at top right, rgba(255,255,255,0.05), transparent),
+                        radial-gradient(circle at bottom left, rgba(255,255,255,0.05), transparent);
+    }
+    
+    .glass {
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      background-color: var(--card);
+      border: 1px solid var(--border);
+    }
+
+    /* Badge Animations */
+    @keyframes badge-pop {
+      0% { transform: scale(0.5); opacity: 0; }
+      70% { transform: scale(1.15); opacity: 1; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes badge-glow {
+      0%, 100% { filter: drop-shadow(0 0 5px var(--accent)); }
+      50% { filter: drop-shadow(0 0 20px var(--accent)); }
+    }
+
+    .badge-pop {
+      animation: badge-pop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    }
+
+    .badge-glow {
+      animation: badge-glow 2s ease-in-out infinite;
+    }
+
+    .prose {
+      color: var(--text);
     }
     .prose h1, .prose h2, .prose h3 {
+      color: var(--text);
       font-weight: 700;
       margin-top: 1.5rem;
       margin-bottom: 0.5rem;
@@ -25,18 +129,21 @@
       line-height: 1.7;
     }
     .prose code {
-      background: #f3f4f6;
+      background: var(--card);
+      color: var(--accent);
       padding: 0.2rem 0.4rem;
       border-radius: 0.25rem;
       font-family: monospace;
     }
     .prose pre {
-      background: #111;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(4px);
       color: #eee;
       padding: 1rem;
       border-radius: 0.5rem;
       overflow-x: auto;
       margin: 1rem 0;
+      border: 1px solid var(--border);
     }
   </style>
 <script type="importmap">
